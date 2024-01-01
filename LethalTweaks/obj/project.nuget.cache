@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JXWjM2PFb1KkBk/cRUm0Fy4dKdOugyOKFXgvun31uBcJYpyAAqsOL7l/yJ5YHHaJt56gbw8mpcIr/MwDcaewcA==",
+  "dgSpecHash": "rP+QBI3gSRs5PSTrUaiYC4yK1yBe3jWS/h4mTKNjy83FOWQXpjdrr8LXVntP/1VzVHk48U/TomMAhEzlhq7O5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ben\\LethalTweaks\\LethalCompanyTemplate\\LethalCompanyTemplate.csproj",
+  "projectFilePath": "C:\\Users\\Ben\\LethalTweaks\\LethalTweaks\\LethalTweaks.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ben\\.nuget\\packages\\bepinex.analyzers\\1.0.8\\bepinex.analyzers.1.0.8.nupkg.sha512",
     "C:\\Users\\Ben\\.nuget\\packages\\bepinex.baselib\\5.4.20\\bepinex.baselib.5.4.20.nupkg.sha512",

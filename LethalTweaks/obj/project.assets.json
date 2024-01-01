@@ -2689,11 +2689,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ben\\LethalTweaks\\LethalCompanyTemplate\\LethalCompanyTemplate.csproj",
-      "projectName": "LethalCompanyTemplate",
-      "projectPath": "C:\\Users\\Ben\\LethalTweaks\\LethalCompanyTemplate\\LethalCompanyTemplate.csproj",
+      "projectUniqueName": "C:\\Users\\Ben\\LethalTweaks\\LethalTweaks\\LethalTweaks.csproj",
+      "projectName": "LethalTweaks",
+      "projectPath": "C:\\Users\\Ben\\LethalTweaks\\LethalTweaks\\LethalTweaks.csproj",
       "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ben\\LethalTweaks\\LethalCompanyTemplate\\obj\\",
+      "outputPath": "C:\\Users\\Ben\\LethalTweaks\\LethalTweaks\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
