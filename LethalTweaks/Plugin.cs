@@ -13,18 +13,19 @@ namespace LethalTweaks {
 
         private readonly Harmony harmony = new Harmony(modGUID);
         private static LethalTweaksBase Instance;
-        internal ManualLogSource logger;
+        internal ManualLogSource mls;
 
         void Awake() {
             if (Instance == null)
                 Instance = this;
 
-            logger = BepInEx.Logging.Logger.CreateLogSource(modGUID);
+            mls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
 
-            logger.LogInfo("Lethal Tweaks has started");
+            mls.LogInfo("Lethal Tweaks has started");
 
             harmony.PatchAll(typeof(LethalTweaksBase));
             harmony.PatchAll(typeof(PlayerControllerBPatch));
+            harmony.PatchAll(typeof(ItemDropshipPatch));
         }
     }
 }
