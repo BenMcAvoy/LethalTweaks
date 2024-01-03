@@ -1,25 +1,25 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using LethalUtilities.Patches;
+using LethalTweaks.Patches;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LethalUtilities
+namespace LethalTweaks
 {
     [BepInPlugin(modGUID, modName, modVerison)]
-    public class LethalUtilitiesBase : BaseUnityPlugin
+    public class LethalTweaksBase : BaseUnityPlugin
     {
-        public const string modGUID = "Hydrx.LethalUtilities";
-        public const string modName = "Lethal Utilities";
+        public const string modGUID = "HydrxAndBen.LethalTweaks";
+        public const string modName = "Lethal Tweaks";
         public const string modVerison = "0.0.1";
 
         private readonly Harmony harmony = new Harmony(modGUID);
 
-        private static LethalUtilitiesBase Instance;
+        private static LethalTweaksBase Instance;
 
         internal ManualLogSource mls;
 
@@ -33,9 +33,9 @@ namespace LethalUtilities
 
             mls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
 
-            mls.LogInfo("Lethal Utilities has started");
+            mls.LogInfo("Lethal Tweaks has started");
 
-            harmony.PatchAll(typeof(LethalUtilitiesBase));
+            harmony.PatchAll(typeof(LethalTweaksBase));
             harmony.PatchAll(typeof(PlayerControllerBPatch));
         }
 
