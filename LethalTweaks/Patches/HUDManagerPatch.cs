@@ -29,7 +29,7 @@ namespace LethalTweaks.Patches {
             RectTransform rectTransform = healthUGUI.rectTransform;
 
             rectTransform.SetParent(__instance.PTTIcon.transform, false);
-            rectTransform.anchoredPosition = new Vector2(10f, -60f);
+            rectTransform.anchoredPosition = new Vector2(8f, -60f);
 
             healthUGUI.font = __instance.controlTipLines[0].font;
             healthUGUI.fontSize = 20f;
