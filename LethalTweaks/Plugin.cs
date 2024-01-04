@@ -28,6 +28,7 @@ namespace LethalTweaks {
             Patch(typeof(ItemDropshipPatch));
             Patch(typeof(LethalTweaksBase));
             Patch(typeof(HUDManagerPatch));
+            Patch(typeof(devPatches));
 
             mls.LogInfo("Lethal Tweaks has finished patching.");
         }
