@@ -6,11 +6,9 @@ using HarmonyLib;
 using System;
 
 namespace LethalTweaks {
-    [BepInPlugin(modGUID, modName, modVerison)]
+    [BepInPlugin(modGUID, "Lethal Tweaks", "0.0.1")]
     public class LethalTweaksBase : BaseUnityPlugin {
-        public const string modGUID = "HydrxAndBen.LethalTweaks";
-        public const string modName = "Lethal Tweaks";
-        public const string modVerison = "0.0.1";
+        public const string modGUID = "FatalSyndicate.LethalTweaks";
 
         private readonly Harmony harmony = new Harmony(modGUID);
         private static LethalTweaksBase Instance;
