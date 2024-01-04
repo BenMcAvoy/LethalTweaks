@@ -43,8 +43,7 @@ namespace LethalTweaks.Patches {
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
-        private static void Update()
-        {
+        private static void Update() {
             if (healthText == null) return;
             if (_healthValueForUpdater == _oldValuehealthValueForUpdater) return;
 
