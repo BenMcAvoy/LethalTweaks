@@ -24,17 +24,17 @@ namespace LethalTweaks {
 
             mls.LogInfo("Lethal Tweaks is patching.");
 
-            Patch(mls, typeof(PlayerControllerBPatch));
-            Patch(mls, typeof(ItemDropshipPatch));
-            Patch(mls, typeof(LethalTweaksBase));
-            Patch(mls, typeof(HUDManagerPatch));
+            Patch(typeof(PlayerControllerBPatch));
+            Patch(typeof(ItemDropshipPatch));
+            Patch(typeof(LethalTweaksBase));
+            Patch(typeof(HUDManagerPatch));
 
             mls.LogInfo("Lethal Tweaks has finished patching.");
         }
 
-        void Patch(ManualLogSource logger, Type type) {
+        void Patch(Type type) {
             mls.LogInfo("Running patch: " + type.ToString());
-            harmony.PatchAll(typeof(ItemDropshipPatch));
+            harmony.PatchAll(type);
         }
     }
 }
