@@ -14,15 +14,15 @@ namespace LethalTweaks {
 
         private readonly Harmony harmony = new Harmony(modGUID);
         private static LethalTweaksBase Instance;
-        internal ManualLogSource mls;
+        internal ManualLogSource logger;
 
         void Awake() {
             if (Instance == null)
                 Instance = this;
 
-            mls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
+            logger = BepInEx.Logging.Logger.CreateLogSource(modGUID);
 
-            mls.LogInfo("Lethal Tweaks is patching.");
+            logger.LogInfo("Lethal Tweaks is patching.");
 
             Patch(typeof(GameNetworkManagerPatch));
             Patch(typeof(PlayerControllerBPatch));
@@ -31,11 +31,11 @@ namespace LethalTweaks {
             Patch(typeof(HUDManagerPatch));
             Patch(typeof(devPatches));
 
-            mls.LogInfo("Lethal Tweaks has finished patching.");
+            logger.LogInfo("Lethal Tweaks has finished patching.");
         }
 
         void Patch(Type type) {
-            mls.LogInfo("Running patch: " + type.ToString());
+            logger.LogInfo("Running patch: " + type.ToString());
             harmony.PatchAll(type);
         }
     }
