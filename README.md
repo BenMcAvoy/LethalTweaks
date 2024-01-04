@@ -10,7 +10,7 @@ A tweak pack for Lethal Company
 - [ ] Minimap when spectating
 - [ ] Late join (if not in orbit, join as spectator)
 - [ ] Death information on performance report
-- [ ] Flashlight toggle
+- [x] Flashlight toggle
 - [ ] Radio toggle
 - [ ] Natural health regen
 - [ ] Faster stamina regen
