@@ -524,6 +524,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patches\devPatches.cs" />
     <Compile Include="Patches\HUDManagerPatch.cs" />
     <Compile Include="Patches\ItemDropshipPatch.cs" />
     <Compile Include="Patches\PlayerControllerBPatch.cs" />
