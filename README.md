@@ -6,7 +6,7 @@ A tweak pack for Lethal Company
 - [x] Item dropship speed up
 - [ ] Extra slots
 - [ ] Slot switching with keyboard
-- [ ] HUD values displayed as text
+- [x] HUD values displayed as text
 - [ ] Minimap when spectating
 - [ ] Late join (if not in orbit, join as spectator)
 - [ ] Death information on performance report
