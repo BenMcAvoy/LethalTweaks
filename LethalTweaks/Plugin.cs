@@ -3,6 +3,7 @@ using BepInEx;
 
 using LethalTweaks.Patches;
 using HarmonyLib;
+using System;
 
 namespace LethalTweaks {
     [BepInPlugin(modGUID, modName, modVerison)]
@@ -12,6 +13,7 @@ namespace LethalTweaks {
         public const string modVerison = "0.0.1";
 
         private readonly Harmony harmony = new Harmony(modGUID);
+        private static LethalTweaksBase Instance;
         internal ManualLogSource mls;
 
         void Awake() {
@@ -20,10 +22,18 @@ namespace LethalTweaks {
 
             mls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
 
-            mls.LogInfo("Lethal Tweaks has started");
+            mls.LogInfo("Lethal Tweaks is patching.");
 
-            harmony.PatchAll(typeof(LethalTweaksBase));
-            harmony.PatchAll(typeof(PlayerControllerBPatch));
+            Patch(mls, typeof(PlayerControllerBPatch));
+            Patch(mls, typeof(ItemDropshipPatch));
+            Patch(mls, typeof(LethalTweaksBase));
+            Patch(mls, typeof(HUDManagerPatch));
+
+            mls.LogInfo("Lethal Tweaks has finished patching.");
+        }
+
+        void Patch(ManualLogSource logger, Type type) {
+            mls.LogInfo("Running patch: " + type.ToString());
             harmony.PatchAll(typeof(ItemDropshipPatch));
         }
     }
