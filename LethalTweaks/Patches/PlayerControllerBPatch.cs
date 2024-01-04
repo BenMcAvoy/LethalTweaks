@@ -4,6 +4,7 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Linq;
+using System;
 
 namespace LethalTweaks.Patches {
     [HarmonyPatch(typeof(PlayerControllerB))]
@@ -14,9 +15,22 @@ namespace LethalTweaks.Patches {
             ___sprintMeter = 1f;
         }*/
 
+        [HarmonyPatch("LateUpdate")]
+        [HarmonyPrefix]
+        private static void Prefix(PlayerControllerB __instance) {
+            bool isOwner = __instance.IsOwner;
+            bool isServer = __instance.IsServer;
+            bool isHostPlayerObject = __instance.isHostPlayerObject;
+
+            if (isOwner && (!isServer || isHostPlayerObject)) {
+                HUDManagerPatch._healthValueForUpdater = Math.Max(__instance.health, 0);
+            }
+
+        }
+
         [HarmonyPatch("PlayerJump", (MethodType)5)]
-        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructionList) {
-            List<CodeInstruction> instructions = instructionList.ToList<CodeInstruction>();
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
+            List<CodeInstruction> list = instructions.ToList<CodeInstruction>();
 
             for (int i = 0; i < list.Count; i++)
                 if (list[i].opcode == OpCodes.Ldc_R4)
