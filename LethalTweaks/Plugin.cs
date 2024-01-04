@@ -24,6 +24,7 @@ namespace LethalTweaks {
 
             mls.LogInfo("Lethal Tweaks is patching.");
 
+            Patch(typeof(GameNetworkManagerPatch));
             Patch(typeof(PlayerControllerBPatch));
             Patch(typeof(ItemDropshipPatch));
             Patch(typeof(LethalTweaksBase));
