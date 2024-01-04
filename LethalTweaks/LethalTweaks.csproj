@@ -7,8 +7,8 @@
     <ProjectGuid>{756E8671-60D2-4C6C-B993-65EF1785AD31}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LethalUtilities</RootNamespace>
-    <AssemblyName>LethalUtilities</AssemblyName>
+    <RootNamespace>LethalTweaks</RootNamespace>
+    <AssemblyName>LethalTweaks</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -525,6 +525,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Patches\devPatches.cs" />
+    <Compile Include="Patches\GameNetworkManagerPatch.cs" />
     <Compile Include="Patches\HUDManagerPatch.cs" />
     <Compile Include="Patches\ItemDropshipPatch.cs" />
     <Compile Include="Patches\PlayerControllerBPatch.cs" />
