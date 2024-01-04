@@ -15,8 +15,8 @@ namespace LethalTweaks.Patches {
         }*/
 
         [HarmonyPatch("PlayerJump", (MethodType)5)]
-        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
-            List<CodeInstruction> list = instructions.ToList<CodeInstruction>();
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructionList) {
+            List<CodeInstruction> instructions = instructionList.ToList<CodeInstruction>();
 
             for (int i = 0; i < list.Count; i++)
                 if (list[i].opcode == OpCodes.Ldc_R4)

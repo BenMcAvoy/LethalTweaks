@@ -12,7 +12,6 @@ namespace LethalTweaks {
         public const string modVerison = "0.0.1";
 
         private readonly Harmony harmony = new Harmony(modGUID);
-        private static LethalTweaksBase Instance;
         internal ManualLogSource mls;
 
         void Awake() {

@@ -1,5 +1,4 @@
-﻿using Unity.Netcode;
-using HarmonyLib;
+﻿using HarmonyLib;
 
 namespace LethalTweaks.Patches {
     [HarmonyPatch(typeof(ItemDropship))]
