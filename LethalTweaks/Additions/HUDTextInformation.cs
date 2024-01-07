@@ -19,8 +19,7 @@ namespace LethalTweaks.Patches {
 
         [HarmonyPatch("Start")]
         [HarmonyPostfix]
-        private static void Start(ref HUDManager __instance)
-        {
+        private static void Start(ref HUDManager __instance) {
             GameObject healthHUD = new GameObject("HealthHUDDisplay");
             healthHUD.AddComponent<RectTransform>();
 
