@@ -27,8 +27,7 @@ namespace LethalTweaks.Patches {
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
-        public static void Update(PlayerControllerB __instance, ref float ___sprintMeter)
-        {
+        public static void Update(PlayerControllerB __instance) {
             if (!ShouldProcess(__instance)) return;
 
             if (__instance.currentlyHeldObjectServer is FlashlightItem flashlightItem && __instance.currentlyHeldObjectServer != __instance.pocketedFlashlight)
@@ -40,7 +39,8 @@ namespace LethalTweaks.Patches {
 
                     if (!(__instance.currentlyHeldObjectServer is FlashlightItem))
                         HandleFlashlightUsage(__instance, pocketedFlashlight);
-                } catch { }
+                }
+                catch { }
             }
         }
 
