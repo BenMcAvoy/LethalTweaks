@@ -1,4 +1,5 @@
-﻿using BepInEx.Logging;
+﻿using BepInEx.Configuration;
+using BepInEx.Logging;
 using BepInEx;
 
 using LethalTweaks.Patches;
@@ -7,34 +8,39 @@ using System;
 
 namespace LethalTweaks {
     [BepInPlugin(modGUID, "Lethal Tweaks", "0.0.1")]
-    public class LethalTweaksBase : BaseUnityPlugin {
+    public class Plugin : BaseUnityPlugin {
         public const string modGUID = "FatalSyndicate.LethalTweaks";
 
         private readonly Harmony harmony = new Harmony(modGUID);
-        private static LethalTweaksBase Instance;
-        internal ManualLogSource logger;
+        private static Plugin Instance;
+
+        public bool isDev = true;
 
         void Awake() {
             if (Instance == null)
                 Instance = this;
 
-            logger = BepInEx.Logging.Logger.CreateLogSource(modGUID);
-
-            logger.LogInfo("Lethal Tweaks is patching.");
+            LogInfo("Lethal Tweaks is patching.");
 
             Patch(typeof(GameNetworkManagerPatch));
             Patch(typeof(PlayerControllerBPatch));
             Patch(typeof(ItemDropshipPatch));
-            Patch(typeof(LethalTweaksBase));
+            Patch(typeof(Plugin));
             Patch(typeof(HUDManagerPatch));
-            Patch(typeof(devPatches));
 
-            logger.LogInfo("Lethal Tweaks has finished patching.");
+            if (isDev)
+                Patch(typeof(devPatches));
+
+            LogInfo("Lethal Tweaks has finished patching.");
         }
 
         void Patch(Type type) {
-            logger.LogInfo("Running patch: " + type.ToString());
+            LogInfo("Running patch: " + type.ToString());
             harmony.PatchAll(type);
         }
+
+        public static void LogInfo<T>(T message) { Plugin.LogInfo(message); }
+        public static void LogWarn<T>(T message) { Plugin.LogWarn(message); }
+        public static void LogError<T>(T message) { Plugin.LogError(message); }
     }
 }
