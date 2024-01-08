@@ -2,7 +2,7 @@
 
 namespace LethalTweaks.Patches {
     [HarmonyPatch(typeof(ItemDropship))]
-    internal class ItemDropshipPatch {
+    internal class DropShipTimePatch {
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void Update(ref float ___shipTimer, ref bool ___deliveringOrder, ItemDropship __instance) {

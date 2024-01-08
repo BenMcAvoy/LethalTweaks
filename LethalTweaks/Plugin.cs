@@ -23,9 +23,8 @@ namespace LethalTweaks {
             LogInfo("Lethal Tweaks is patching.");
 
             // Patches
-            Patch(typeof(GameNetworkManagerPatch));
-            Patch(typeof(PlayerControllerBPatch));
-            Patch(typeof(ItemDropshipPatch));
+            Patch(typeof(DropShipTimePatch));
+            Patch(typeof(JumpDelayPatch));
             Patch(typeof(Plugin));
 
             // Additions

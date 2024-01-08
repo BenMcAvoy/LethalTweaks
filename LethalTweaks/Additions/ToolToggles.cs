@@ -3,21 +3,17 @@ using UnityEngine.InputSystem;
 using GameNetcodeStuff;
 using UnityEngine;
 using HarmonyLib;
-
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using System.Linq;
 using System;
 
-public class Keybinds : LcInputActions {
+public class ToolKeybinds : LcInputActions {
     [InputAction("<Keyboard>/f", Name = "Flashlight")]
     public InputAction Flashlight { get; set; }
 }
 
-namespace LethalTweaks.Patches {
+namespace LethalTweaks.Additions {
     [HarmonyPatch(typeof(PlayerControllerB))]
-    internal class PlayerControllerBPatch {
-        internal static Keybinds InputActionInstance = new Keybinds();
+    internal class ToolToggles {
+   internal static ToolKeybinds InputActionInstance = new ToolKeybinds();
 
         [HarmonyPatch("KillPlayer")]
         [HarmonyPostfix]
@@ -70,15 +66,5 @@ namespace LethalTweaks.Patches {
 
         }
 
-        [HarmonyPatch("PlayerJump", (MethodType)5)]
-        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
-            List<CodeInstruction> list = instructions.ToList<CodeInstruction>();
-
-            for (int i = 0; i < list.Count; i++)
-                if (list[i].opcode == OpCodes.Ldc_R4)
-                    list[i] = new CodeInstruction(OpCodes.Ldc_R4, 0f);
-
-            return list;
-        }
     }
 }

@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using GameNetcodeStuff;
+using UnityEngine;
 using HarmonyLib;
 using System;
 using TMPro;
 
 namespace LethalTweaks.Additions {
-    [HarmonyPatch(typeof(HUDManager))]
     internal class HUDTextInformation {
         // Health text storage
         private static TextMeshProUGUI healthText;
@@ -17,7 +17,7 @@ namespace LethalTweaks.Additions {
         private static readonly Color _healthyColor = new Color32(0, byte.MaxValue, 0, byte.MaxValue);
         private static readonly Color _criticalHealthColor = new Color32(byte.MaxValue, 0, 0, byte.MaxValue);
 
-        [HarmonyPatch("Start")]
+        [HarmonyPatch(typeof(HUDManager), "Start")]
         [HarmonyPostfix]
         private static void Start(ref HUDManager __instance) {
             GameObject healthHUD = new GameObject("HealthHUDDisplay");
@@ -40,7 +40,7 @@ namespace LethalTweaks.Additions {
             healthText = healthUGUI;
         }
 
-        [HarmonyPatch("Update")]
+        [HarmonyPatch(typeof(HUDManager), "Update")]
         [HarmonyPostfix]
         private static void Update() {
             if (healthText == null) return;
@@ -68,6 +68,18 @@ namespace LethalTweaks.Additions {
             float interpolatedB = (float)(start.b + (percentage * (end.b - start.b)));
 
             return new Color(interpolatedR, interpolatedG, interpolatedB, 1f);
+        }
+
+        [HarmonyPatch(typeof(PlayerControllerB), "LateUpdate")]
+        [HarmonyPrefix]
+        private static void Prefix(PlayerControllerB __instance) {
+            bool isOwner = __instance.IsOwner;
+            bool isServer = __instance.IsServer;
+            bool isHostPlayerObject = __instance.isHostPlayerObject;
+
+            if (isOwner && (!isServer || isHostPlayerObject)) {
+                Additions.HUDTextInformation._healthValueForUpdater = Math.Max(__instance.health, 0);
+            }
         }
     }
 }

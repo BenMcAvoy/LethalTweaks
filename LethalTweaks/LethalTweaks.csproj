@@ -524,11 +524,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additions\NameplateTweaks.cs" />
+    <Compile Include="Additions\ToolToggles.cs" />
     <Compile Include="Patches\devPatches.cs" />
-    <Compile Include="Patches\GameNetworkManagerPatch.cs" />
-    <Compile Include="Patches\HUDManagerPatch.cs" />
-    <Compile Include="Patches\ItemDropshipPatch.cs" />
-    <Compile Include="Patches\PlayerControllerBPatch.cs" />
+    <Compile Include="Additions\HUDTextInformation.cs" />
+    <Compile Include="Patches\DropShipTimePatch.cs" />
+    <Compile Include="Patches\JumpDelayPatch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
