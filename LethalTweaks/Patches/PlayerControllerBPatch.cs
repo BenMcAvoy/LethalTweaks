@@ -65,7 +65,7 @@ namespace LethalTweaks.Patches {
             bool isHostPlayerObject = __instance.isHostPlayerObject;
 
             if (isOwner && (!isServer || isHostPlayerObject)) {
-                HUDManagerPatch._healthValueForUpdater = Math.Max(__instance.health, 0);
+                Additions.HUDTextInformation._healthValueForUpdater = Math.Max(__instance.health, 0);
             }
 
         }

@@ -3,9 +3,9 @@ using HarmonyLib;
 using System;
 using TMPro;
 
-namespace LethalTweaks.Patches {
+namespace LethalTweaks.Additions {
     [HarmonyPatch(typeof(HUDManager))]
-    internal class HUDManagerPatch {
+    internal class HUDTextInformation {
         // Health text storage
         private static TextMeshProUGUI healthText;
 
