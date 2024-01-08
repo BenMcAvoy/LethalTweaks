@@ -13,7 +13,7 @@ public class ToolKeybinds : LcInputActions {
 namespace LethalTweaks.Additions {
     [HarmonyPatch(typeof(PlayerControllerB))]
     internal class ToolToggles {
-   internal static ToolKeybinds InputActionInstance = new ToolKeybinds();
+        internal static ToolKeybinds InputActionInstance = new ToolKeybinds();
 
         [HarmonyPatch("KillPlayer")]
         [HarmonyPostfix]
@@ -35,8 +35,7 @@ namespace LethalTweaks.Additions {
 
                     if (!(__instance.currentlyHeldObjectServer is FlashlightItem))
                         HandleFlashlightUsage(__instance, pocketedFlashlight);
-                }
-                catch { }
+                } catch { }
             }
         }
 
