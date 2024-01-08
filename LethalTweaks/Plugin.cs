@@ -29,6 +29,7 @@ namespace LethalTweaks {
 
             // Additions
             Patch(typeof(HUDTextInformation));
+            Patch(typeof(ToolToggles));
 
             if (isDev)
                 Patch(typeof(devPatches));
@@ -41,8 +42,8 @@ namespace LethalTweaks {
             harmony.PatchAll(type);
         }
 
-        public static void LogInfo<T>(T message) { Plugin.LogInfo(message); }
-        public static void LogWarn<T>(T message) { Plugin.LogWarn(message); }
-        public static void LogError<T>(T message) { Plugin.LogError(message); }
+        public static void LogInfo<T>(T message) { Instance.Logger.LogInfo(message); }
+        public static void LogWarn<T>(T message) { Instance.Logger.LogWarning(message); }
+        public static void LogError<T>(T message) { Instance.Logger.LogError(message); }
     }
 }
