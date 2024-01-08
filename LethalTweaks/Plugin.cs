@@ -1,10 +1,10 @@
-﻿using BepInEx.Configuration;
-using BepInEx.Logging;
-using BepInEx;
+﻿using BepInEx;
 
-using LethalTweaks.Patches;
 using HarmonyLib;
 using System;
+
+using LethalTweaks.Additions;
+using LethalTweaks.Patches;
 
 namespace LethalTweaks {
     [BepInPlugin(modGUID, "Lethal Tweaks", "0.0.1")]
@@ -22,11 +22,14 @@ namespace LethalTweaks {
 
             LogInfo("Lethal Tweaks is patching.");
 
+            // Patches
             Patch(typeof(GameNetworkManagerPatch));
             Patch(typeof(PlayerControllerBPatch));
             Patch(typeof(ItemDropshipPatch));
             Patch(typeof(Plugin));
-            Patch(typeof(HUDManagerPatch));
+
+            // Additions
+            Patch(typeof(HUDTextInformation));
 
             if (isDev)
                 Patch(typeof(devPatches));
