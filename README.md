@@ -14,6 +14,8 @@ A tweak pack for Lethal Company
 - [ ] Radio toggle
 - [ ] Natural health regen
 - [ ] Faster stamina regen
+- [ ] Flashlight turning on when being stored fix
+- [ ] Nameplate information
 
 ## Notices
 ### Dependency licenses
