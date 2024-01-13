@@ -4,7 +4,6 @@ using UnityEngine;
 using GameNetcodeStuff;
 using LethalCompanyInputUtils.Api;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class DevKeybinds : LcInputActions {
     [InputAction("<Keyboard>/p", Name = "Sprint cheat")]
@@ -18,6 +17,9 @@ public class DevKeybinds : LcInputActions {
 
     [InputAction("<Keyboard>/k", Name = "Remove cash")]
     public InputAction RemoveCash { get; set; }
+
+    [InputAction("<Mouse>/left", Name = "Enabled")]
+    public InputAction Activate { get; set; }
 }
 
 namespace LethalTweaks.Patches {
@@ -43,7 +45,7 @@ namespace LethalTweaks.Patches {
             TimeSpan elapsedSinceLastTrigger = DateTime.Now - lastTriggerTime;
 
             if (elapsedSinceLastTrigger.TotalMilliseconds >= 100) {
-                if (DevBinds.SprintCheat.triggered) {
+                if (DevBinds.SprintCheat.triggered && DevBinds.Activate.triggered) {
                     Plugin.LogInfo("Toggling sprint cheat");
                     sprintEnabled = !sprintEnabled;
 
@@ -51,10 +53,10 @@ namespace LethalTweaks.Patches {
                 }
             }
 
-            if (DevBinds.AddCash.triggered || DevBinds.RemoveCash.triggered) {
+            if (DevBinds.AddCash.triggered || DevBinds.RemoveCash.triggered && DevBinds.Activate.triggered) {
                 int multiplier = DevBinds.AddCash.triggered ? 1 : DevBinds.RemoveCash.triggered ? -1 : 0;
 
-                if (terminal != null) {
+                if (terminal != null && DevBinds.Activate.triggered) {
                     terminal.groupCredits += 10 * multiplier;
 
                     if (!GameNetworkManager.Instance.localPlayerController.IsServer)
