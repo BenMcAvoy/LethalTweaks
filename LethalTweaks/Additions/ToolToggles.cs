@@ -1,5 +1,6 @@
 ﻿using LethalCompanyInputUtils.Api;
 using UnityEngine.InputSystem;
+using System.Reflection;
 using GameNetcodeStuff;
 using UnityEngine;
 using HarmonyLib;
@@ -8,20 +9,22 @@ using System;
 public class ToolKeybinds : LcInputActions {
     [InputAction("<Keyboard>/f", Name = "Flashlight")]
     public InputAction Flashlight { get; set; }
+
+    [InputAction("<Keyboard>/x", Name = "WalkieTalkie")]
+    public InputAction WalkieTalkie { get; set; }
 }
 
 namespace LethalTweaks.Additions {
-    [HarmonyPatch(typeof(PlayerControllerB))]
     internal class ToolToggles {
         internal static ToolKeybinds InputActionInstance = new ToolKeybinds();
 
-        [HarmonyPatch("KillPlayer")]
+        [HarmonyPatch(typeof(PlayerControllerB), "KillPlayer")]
         [HarmonyPostfix]
         public static void ClearFlashlight(PlayerControllerB __instance) {
             __instance.pocketedFlashlight = null;
         }
 
-        [HarmonyPatch("Update")]
+        [HarmonyPatch(typeof(PlayerControllerB), "Update")]
         [HarmonyPostfix]
         public static void Update(PlayerControllerB __instance) {
             if (!ShouldProcess(__instance)) return;
@@ -52,7 +55,18 @@ namespace LethalTweaks.Additions {
             pocketedFlashlight.PocketFlashlightServerRpc(pocketedFlashlight.isBeingUsed);
         }
 
-        [HarmonyPatch("LateUpdate")]
+        [HarmonyPatch(typeof(GrabbableObject), "Update")]
+        [HarmonyPrefix]
+        private static void WalkieTalkieUpdate(GrabbableObject __instance) {
+            if (InputActionInstance.WalkieTalkie.triggered) {
+                var methodInfo = __instance.GetType().GetMethod("ActivateItemClientRpc", BindingFlags.NonPublic | BindingFlags.Instance);
+
+                if (methodInfo != null)
+                    methodInfo.Invoke(__instance, new object[] { true, true });
+            }
+        }
+
+        [HarmonyPatch(typeof(PlayerControllerB), "LateUpdate")]
         [HarmonyPrefix]
         private static void Prefix(PlayerControllerB __instance) {
             bool isOwner = __instance.IsOwner;
@@ -60,10 +74,8 @@ namespace LethalTweaks.Additions {
             bool isHostPlayerObject = __instance.isHostPlayerObject;
 
             if (isOwner && (!isServer || isHostPlayerObject)) {
-                Additions.HUDTextInformation._healthValueForUpdater = Math.Max(__instance.health, 0);
+                HUDTextInformation._healthValueForUpdater = Math.Max(__instance.health, 0);
             }
-
         }
-
     }
 }
