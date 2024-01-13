@@ -15,7 +15,7 @@ A tweak pack for Lethal Company
 - [ ] Natural health regen
 - [ ] Faster stamina regen
 - [ ] Flashlight turning on when being stored fix
-- [ ] Nameplate information
+- [ ] Changeable aspect ratio
 
 ## Notices
 ### Dependency licenses
