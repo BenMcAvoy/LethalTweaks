@@ -78,7 +78,7 @@ namespace LethalTweaks.Additions {
             bool isHostPlayerObject = __instance.isHostPlayerObject;
 
             if (isOwner && (!isServer || isHostPlayerObject)) {
-                Additions.HUDTextInformation._healthValueForUpdater = Math.Max(__instance.health, 0);
+                HUDTextInformation._healthValueForUpdater = Math.Max(__instance.health, 0);
             }
         }
     }
