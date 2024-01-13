@@ -15,7 +15,7 @@ namespace LethalTweaks.Patches {
     internal class JumpDelayPatch {
         [HarmonyPatch("PlayerJump", (MethodType)5)]
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
-            List<CodeInstruction> list = instructions.ToList<CodeInstruction>();
+            List<CodeInstruction> list = instructions.ToList();
 
             for (int i = 0; i < list.Count; i++)
                 if (list[i].opcode == OpCodes.Ldc_R4)
