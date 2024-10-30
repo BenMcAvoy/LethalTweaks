@@ -16,7 +16,3 @@ A tweak pack for Lethal Company
 - [ ] Faster stamina regen
 - [ ] Flashlight turning on when being stored fix
 - [ ] Changeable aspect ratio
-
-## Notices
-### Dependency licenses
-All dependency licenses can be found in `Dependencies/<NAME>License.txt`
