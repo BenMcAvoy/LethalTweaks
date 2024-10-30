@@ -1,19 +1,16 @@
-﻿using LethalCompanyInputUtils.Api;
-using UnityEngine.InputSystem;
-using GameNetcodeStuff;
-using UnityEngine;
+﻿using GameNetcodeStuff;
 using HarmonyLib;
 
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Linq;
-using System;
 
 
-namespace LethalTweaks.Patches {
+namespace LethalTweaks.Patches
+{
     [HarmonyPatch(typeof(PlayerControllerB))]
     internal class JumpDelayPatch {
-        [HarmonyPatch("PlayerJump", (MethodType)5)]
+        [HarmonyPatch("PlayerJump", MethodType.Enumerator)]
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
             List<CodeInstruction> list = instructions.ToList();
 

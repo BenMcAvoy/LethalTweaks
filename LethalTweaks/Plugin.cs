@@ -14,8 +14,6 @@ namespace LethalTweaks {
         private readonly Harmony harmony = new Harmony(modGUID);
         private static Plugin Instance;
 
-        public bool isDev = true;
-
         void Awake() {
             if (Instance == null)
                 Instance = this;
@@ -30,9 +28,8 @@ namespace LethalTweaks {
             // Additions
             Patch(typeof(HUDTextInformation));
             Patch(typeof(ToolToggles));
-
-            if (isDev)
-                Patch(typeof(devPatches));
+            Patch(typeof(numSlot));
+            Patch(typeof(extraSlots));
 
             LogInfo("Lethal Tweaks has finished patching.");
         }
@@ -42,8 +39,8 @@ namespace LethalTweaks {
             harmony.PatchAll(type);
         }
 
-        public static void LogInfo<T>(T message) { Instance.Logger.LogInfo(message); }
-        public static void LogWarn<T>(T message) { Instance.Logger.LogWarning(message); }
-        public static void LogError<T>(T message) { Instance.Logger.LogError(message); }
+        public static void LogInfo<T>(T message) => Instance.Logger.LogInfo(message); 
+        public static void LogWarn<T>(T message) => Instance.Logger.LogWarning(message);
+        public static void LogError<T>(T message) => Instance.Logger.LogError(message); 
     }
 }

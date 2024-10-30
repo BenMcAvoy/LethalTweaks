@@ -1,22 +1,12 @@
-﻿using LethalCompanyInputUtils.Api;
-using UnityEngine.InputSystem;
+﻿using UnityEngine.InputSystem;
 using System.Reflection;
 using GameNetcodeStuff;
 using UnityEngine;
 using HarmonyLib;
 using System;
 
-public class ToolKeybinds : LcInputActions {
-    [InputAction("<Keyboard>/f", Name = "Flashlight")]
-    public InputAction Flashlight { get; set; }
-
-    [InputAction("<Keyboard>/x", Name = "WalkieTalkie")]
-    public InputAction WalkieTalkie { get; set; }
-}
-
 namespace LethalTweaks.Additions {
-    internal class ToolToggles {
-        internal static ToolKeybinds InputActionInstance = new ToolKeybinds();
+    class ToolToggles {
 
         [HarmonyPatch(typeof(PlayerControllerB), "KillPlayer")]
         [HarmonyPostfix]
@@ -32,7 +22,7 @@ namespace LethalTweaks.Additions {
             if (__instance.currentlyHeldObjectServer is FlashlightItem flashlightItem && __instance.currentlyHeldObjectServer != __instance.pocketedFlashlight)
                 __instance.pocketedFlashlight = __instance.currentlyHeldObjectServer;
 
-            if (__instance.pocketedFlashlight != null && InputActionInstance.Flashlight.triggered && __instance.pocketedFlashlight is FlashlightItem pocketedFlashlight && pocketedFlashlight.isHeld) {
+            if (__instance.pocketedFlashlight != null && Keyboard.current.fKey.isPressed && __instance.pocketedFlashlight is FlashlightItem pocketedFlashlight && pocketedFlashlight.isHeld) {
                 try {
                     pocketedFlashlight.UseItemOnClient(true);
 
@@ -42,7 +32,7 @@ namespace LethalTweaks.Additions {
             }
         }
 
-        private static bool ShouldProcess(PlayerControllerB __instance) {
+        public static bool ShouldProcess(PlayerControllerB __instance) {
             return !(!__instance.IsOwner || !__instance.isPlayerControlled || (__instance.IsServer && !__instance.isHostPlayerObject)) && !__instance.isTestingPlayer && !__instance.inTerminalMenu && !__instance.isTypingChat && Application.isFocused;
         }
 
@@ -58,7 +48,7 @@ namespace LethalTweaks.Additions {
         [HarmonyPatch(typeof(GrabbableObject), "Update")]
         [HarmonyPrefix]
         private static void WalkieTalkieUpdate(GrabbableObject __instance) {
-            if (InputActionInstance.WalkieTalkie.triggered) {
+            if (Keyboard.current.xKey.isPressed) {
                 var methodInfo = __instance.GetType().GetMethod("ActivateItemClientRpc", BindingFlags.NonPublic | BindingFlags.Instance);
 
                 if (methodInfo != null)

@@ -3,12 +3,12 @@ using HarmonyLib;
 using System.Reflection;
 
 namespace LethalTweaks.Patches {
-    internal class FlashlightPatch {
-        private static FieldInfo _previousPlayerField;
+    class FlashlightPatch {
+        static FieldInfo _previousPlayerField;
 
         [HarmonyPatch(typeof(FlashlightItem), "DiscardItem")]
         [HarmonyPostfix]
-        private static void DiscardItem(FlashlightItem __instance) {
+        static void DiscardItem(FlashlightItem __instance) {
             if (_previousPlayerField == null)
                 _previousPlayerField = typeof(FlashlightItem).GetField("previousPlayerHeldBy", BindingFlags.Instance | BindingFlags.NonPublic);
 
